@@ -1,0 +1,29 @@
+.content {
+  &-accordion{
+    background: $color-white url(/images/social/facebook.svg) no-repeat scroll center top;
+    border: none;
+    border-bottom: 0.1rem solid $color-light-grey;
+    color:$color-orange;
+    cursor: pointer;
+    padding: 1.8rem;
+    width: 100%;
+    text-align: left;
+    outline: none;
+    font-size: 1.5rem;
+    font-weight: 600;
+
+    &::before {
+      content: "\25BA" ;
+    }
+    &-down::before {
+      content: "\25BC" ;
+    }
+  }
+  &-accordion-panel {
+    padding: 0 1.8rem;
+    display: none;
+    background-color: white;
+    overflow: hidden;
+    transition:  max-height .35s;
+  }
+}

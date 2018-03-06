@@ -1,0 +1,23 @@
+.header {
+    background: $color-dark-blue url(/images/header_img.jpg) no-repeat fixed top;
+    background-size: cover;
+
+    &-wrapper {
+        padding: 0rem 2rem 2rem 2rem;
+
+        @media only screen and (min-width: $bp-medium) {
+            max-width: 100rem;
+            margin: 0rem auto;
+        }
+    }
+    &-logo {
+        max-width: 25rem;
+    }
+    &-slogan {
+        max-width: 25rem;
+
+        @media only screen and (min-width: $bp-medium) {
+            max-width: 85rem;
+        }
+    }
+}
