@@ -1,0 +1,102 @@
+.header-top-nav {
+    
+    background-color: $color-green;
+
+    @media only screen and (min-width: $bp-medium) {
+        background-color:transparent;
+        
+    }
+
+    .header-site-nav {
+        font-family: 'Nunito', sans-serif;
+        font-weight: 700;
+        font-size: 2.8rem;
+        display: block;
+        position: relative;
+        overflow-y: hidden;
+        top: 8rem;
+        height: 0rem;
+        transition: all 0.3s ease-in;
+        width: 100%;
+        list-style: none;
+
+        @media only screen and (min-width: $bp-medium) {
+            display: inline;
+            top: 0rem;
+            left: 0rem;
+            font-size: 1.8rem;
+        }
+
+        li {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            margin: 0;
+            
+            @media only screen and (min-width: $bp-medium) {
+                display: inline-block;
+                width: auto;
+                padding:0rem 3rem;
+            }
+        }
+        .header-btn {
+            position: relative;
+            display: block;
+            border-bottom: 0.2rem solid $color-white;
+            padding: 3.5rem 0rem 1rem 0rem;
+            margin: 0rem 1.5rem;
+            color: $color-white;
+            
+            // animation: moveInRight .9s ease-out .75s;
+            // animation-fill-mode: backwards;
+
+            @media only screen and (min-width: $bp-medium) {
+                border: none;
+            }
+        }
+        .header-btn:hover {
+            background: transparent;
+            color: $color-white;
+            text-decoration: none;
+            
+        }
+        .header-btn:hover:before,
+        {
+            transform: translate(0, 0);
+            width: 100%;
+            height: 1rem;
+        }
+        .header-btn:before,
+        {
+            content: '';
+            position: absolute;
+            top: 0rem;
+            width: 100%;
+            height: 0rem;
+            transition: all 0.1s linear;
+            @media only screen and (min-width: $bp-medium) {
+                background: $color-orange;
+            }
+        }
+
+    }
+    .header-mobile-nav {
+        display: block;
+        list-style: none;
+
+        @media only screen and (min-width: $bp-medium) {
+            display: none;
+        }
+        .header-mobile-icon {
+            font-size: 5rem;
+            position: absolute;
+            right: 0rem;
+            top: 0rem;
+            padding: 3rem;
+            color: $color-white;
+        }
+    }
+
+}
+
+

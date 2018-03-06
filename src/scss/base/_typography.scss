@@ -1,0 +1,87 @@
+body {
+		font-family: $font-primary;
+		line-height: 2.5rem;
+		font-size: $default-font-size;
+    color: $color-black;
+}
+%heading {
+	font-family: $font-headers;
+}
+h1 {
+	@extend %heading;
+	font-weight: 700;
+	font-size: 4rem;
+	margin: 10rem 0 5rem 0;
+	color: $color-black;
+}
+h2 {
+	@extend %heading;
+	font-weight: 800;
+	font-size: 4rem;
+	line-height: 4rem;
+	margin: 2rem 0 3rem 0;
+	color: $color-bright-blue;
+}
+h3 {
+	@extend %heading;
+	font-weight: 800;
+	font-size: 2.5rem;
+	line-height: 2.5rem;
+	margin: 2rem 0 3rem 0;
+	color: $color-bright-blue;
+}
+h4 {
+	@extend %heading;
+	font-weight: 700;
+	font-size: 2.5rem;
+	text-transform: uppercase;
+	color: $color-green;
+}
+h5, h6 {
+	font-size: 1.2rem;
+}
+p {
+	margin-bottom: 2.6rem;
+}
+ul {
+	margin-bottom: 2rem;
+}
+li {
+	margin:0rem 0rem 1.5rem 0;
+}
+dt {
+	@extend %heading;
+	font-weight: 700;
+	font-size: 2.5rem;
+	color: $color-green;
+	margin: 2rem 0rem 1rem 0rem;
+}
+dd {
+	margin-bottom: 4rem;
+}
+a {
+	transition: all 0.2s ease-in;
+}
+a:link {
+	text-decoration: none;
+	color: #2e97ac;
+}
+a:hover {
+	text-decoration: underline;
+	color: #2e97ac;
+}
+.all-caps {
+	text-transform: uppercase;
+}
+.cape-orange-text {
+	color: $color-orange !important;
+}
+.cape-dark-blue-text {
+	color: $color-dark-blue !important;
+}
+.cape-white-text {
+	color: $color-white !important;
+}
+.cape-bright-blue-text {
+	color: $color-bright-blue !important;
+}

@@ -1,0 +1,18 @@
+@mixin flex-align-items($align-items) {
+    @if $align-items == flexstart {
+        align-items: flex-start;
+    }
+    @if $align-items == flexend {
+        align-items: flex-end;
+    }
+    @if $align-items == center {
+        align-items: center;
+    }
+    @if $align-items == baseline {
+        align-items: baseline;
+    }
+    @if $align-items == stretch {
+        align-items: stretch;
+    }
+}
+
