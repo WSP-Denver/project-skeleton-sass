@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>CHANGE ME</title>
   <link rel="stylesheet" media="screen" href="/include/css/vendor.css" type="text/css" />
+  <link rel="stylesheet" media="print" href="/include/css/normalize.css" type="text/css" />
   <link rel="stylesheet" media="screen" href="/include/css/main.css" type="text/css" />
   <link rel="stylesheet" media="screen" href="/include/css/media_queries.css" type="text/css" />
   <link rel="stylesheet" media="print" href="/include/css/print.css" type="text/css" />
