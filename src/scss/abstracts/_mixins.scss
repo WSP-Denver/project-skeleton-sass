@@ -15,4 +15,24 @@
         align-items: stretch;
     }
 }
+@mixin flex-justify-content($justify-content) {
+    @if $justify-content == flexstart {
+        align-items: flex-start;
+    }
+    @if $justify-content == flexend {
+        align-items: flex-end;
+    }
+    @if $justify-content == center {
+        align-items: center;
+    }
+    @if $justify-content == spacearound {
+        align-items: space-around;
+    }
+    @if $justify-content == spacebetween {
+        align-items: space-between;
+    }
+    @if $justify-content == spaceevenly {
+        align-items: space-evenly;
+    }
+}
 

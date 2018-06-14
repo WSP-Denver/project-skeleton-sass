@@ -1,23 +1,42 @@
-.header {
-    background: $color-dark-blue url(/images/header_img.jpg) no-repeat fixed top;
-    background-size: cover;
+/*=============================================
+=            Header Styles            =
+=============================================*/
 
-    &-wrapper {
-        padding: 0rem 2rem 2rem 2rem;
-
-        @media only screen and (min-width: $bp-medium) {
-            max-width: 100rem;
-            margin: 0rem auto;
-        }
+header {
+    background: linear-gradient(90deg, $color-bright-blue, $color-light-green);
+    color: $color-light-green;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    z-index: 100;
+    padding: 0rem;
+    .logo-wrapper {
+        flex: 0 1 auto;
+        align-self: center;
+        padding: 1.2rem 0 1.2rem 2.2rem;
     }
-    &-logo {
-        max-width: 25rem;
+    .logo-wrapper .logo {
+        width: 100%;
+        transition: width .25s ease;
     }
-    &-slogan {
-        max-width: 25rem;
-
-        @media only screen and (min-width: $bp-medium) {
-            max-width: 85rem;
-        }
+    .search-bar {
+        display: none;
+        overflow: hidden;
+    }
+    #searchIcon {
+        fill: $color-orange;
+    }
+    &.stick {
+        position: fixed;
+        top: 0;
+    }
+    &.stick .mobile-button {
+        top: 1.2rem;
+    }
+    &.stick .logo-wrapper .logo {
+        //max-height: 7.5rem;
+        width: 65%;
     }
 }
+
+/*=====  End of Header Styles  ======*/

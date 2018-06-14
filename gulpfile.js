@@ -4,6 +4,8 @@ const pkg = require("./package.json");
 // gulp
 const gulp = require("gulp");
 
+var browserSync = require('browser-sync').create();
+
 // load all plugins in "devDependencies" into the variable $
 const $ = require("gulp-load-plugins")({
     pattern: ["*"],
@@ -26,19 +28,10 @@ const banner = [
     ""
 ].join("\n");
 
-gulp.task("postcss", function () {
-    var postcss    = require('gulp-postcss');
-    var sourcemaps = require('gulp-sourcemaps');
-
-    $.fancyLog("-> Moving media queries");
-    return gulp.src(pkg.paths.dist.css)
-        .pipe(postcss([ require('precss'), require('css-mqpacker') ]) )
-        .pipe(gulp.dest(pkg.paths.dist.css) );
-});
 
 // scss - build the scss to the build folder, including the required paths, and writing out a sourcemap
 gulp.task("scss", () => {
-    $.fancyLog("-> Compiling scss");
+    $.fancyLog("-> Compiling Main scss");
     return gulp.src(pkg.paths.src.scss + pkg.vars.scssName)
         .pipe($.plumber({ errorHandler: onError }))
         .pipe($.sourcemaps.init({ loadMaps: true }))
@@ -48,14 +41,50 @@ gulp.task("scss", () => {
             .on("error", $.sass.logError))
         .pipe($.cached("sass_compile"))
         .pipe($.autoprefixer())
+        .pipe($.pxtorem())
         .pipe($.sourcemaps.write("./"))
         .pipe($.size({ gzip: true, showFiles: true }))
-        .pipe(gulp.dest(pkg.paths.build.css));
+        .pipe(gulp.dest(pkg.paths.build.css))
+        .pipe(browserSync.stream());
+});
+
+// scss - build the scss to the build folder, including the required paths, and writing out a sourcemap
+gulp.task("mqscss", () => {
+    $.fancyLog("-> Compiling Media Query scss");
+    return gulp.src(pkg.paths.src.scss + pkg.vars.mqscssName)
+        .pipe($.plumber({ errorHandler: onError }))
+        .pipe($.sourcemaps.init({ loadMaps: true }))
+        .pipe($.sass({
+            includePaths: pkg.paths.scss
+        })
+            .on("error", $.sass.logError))
+        .pipe($.cached("sass_compile"))
+        .pipe($.autoprefixer())
+        .pipe($.pxtorem())
+        .pipe($.sourcemaps.write("./"))
+        .pipe($.size({ gzip: true, showFiles: true }))
+        .pipe(gulp.dest(pkg.paths.build.css))
+        .pipe(browserSync.stream());
 });
 
 // css task - add main.css distribution CSS into the public css folder, and add our banner to it
-gulp.task("css", ["scss", "postcss"], () => {
-    $.fancyLog("-> Building css");
+gulp.task("css", ["scss"], () => {
+    $.fancyLog("-> Building Main css");
+    return gulp.src(pkg.globs.distCss)
+        .pipe($.plumber({ errorHandler: onError }))
+        .pipe($.newer({ dest: pkg.paths.dist.css }))
+        .pipe($.print())
+        .pipe($.sourcemaps.init({ loadMaps: true }))
+        .pipe($.header(banner, { pkg: pkg }))
+        .pipe($.sourcemaps.write("./"))
+        .pipe($.size({ gzip: true, showFiles: true }))
+        .pipe(gulp.dest(pkg.paths.dist.css))
+        .pipe($.filter("**/*.css"))
+        .pipe($.livereload());
+});
+// css task - add main.css distribution CSS into the public css folder, and add our banner to it
+gulp.task("mqcss", ["mqscss"], () => {
+    $.fancyLog("-> Building Media Query css");
     return gulp.src(pkg.globs.distCss)
         .pipe($.plumber({ errorHandler: onError }))
         .pipe($.newer({ dest: pkg.paths.dist.css }))
@@ -71,7 +100,7 @@ gulp.task("css", ["scss", "postcss"], () => {
 
 // css task - combine & minimize any vendor CSS into the public css folder, and add our banner to it
 gulp.task("vendorcss", () => {
-    $.fancyLog("-> Building css");
+    $.fancyLog("-> Building Vendor css");
     return gulp.src(pkg.globs.vendorCss)
         .pipe($.plumber({ errorHandler: onError }))
         .pipe($.newer({ dest: pkg.paths.dist.css }))
@@ -93,48 +122,6 @@ gulp.task("vendorcss", () => {
         .pipe($.livereload());
 });
 
-var g = require("gulp-load-plugins")();
-
-gulp.task("extractmq", function() {
-    gulp.src("public/include/css/main.css")
-        .pipe(g.extractMediaQueries())
-        .pipe(gulp.dest("public/include/css"));
-});
-
-// Prism js task - combine the prismjs Javascript & config file into one bundle
-gulp.task("prism-js", () => {
-    $.fancyLog("-> Building prism.min.js...");
-    return gulp.src(pkg.globs.prismJs)
-        .pipe($.plumber({ errorHandler: onError }))
-        .pipe($.newer({ dest: pkg.paths.build.js + "prism.min.js" }))
-        .pipe($.concat("prism.min.js"))
-        .pipe($.uglify())
-        .pipe($.size({ gzip: true, showFiles: true }))
-        .pipe(gulp.dest(pkg.paths.build.js));
-});
-
-// babel js task - transpile our Javascript into the build directory
-gulp.task("js-babel", () => {
-    $.fancyLog("-> Transpiling Javascript via Babel...");
-    return gulp.src(pkg.globs.babelJs)
-        .pipe($.plumber({ errorHandler: onError }))
-        .pipe($.newer({ dest: pkg.paths.build.js }))
-        .pipe($.babel())
-        .pipe($.size({ gzip: true, showFiles: true }))
-        .pipe(gulp.dest(pkg.paths.build.js));
-});
-
-// components - build .vue VueJS components
-gulp.task("components", () => {
-    $.fancyLog("-> Compiling Vue Components");
-    return gulp.src(pkg.globs.components)
-        .pipe($.plumber({ errorHandler: onError }))
-        .pipe($.newer({ dest: pkg.paths.build.js, ext: ".js" }))
-        .pipe($.vueify({}))
-        .pipe($.size({ gzip: true, showFiles: true }))
-        .pipe(gulp.dest(pkg.paths.build.js));
-});
-
 // inline js task - minimize the inline Javascript into _inlinejs in the templates path
 gulp.task("js-inline", () => {
     $.fancyLog("-> Copying inline js");
@@ -144,9 +131,9 @@ gulp.task("js-inline", () => {
             $.newer({ dest: pkg.paths.templates + "_inlinejs", ext: ".min.js" }),
             $.newer({ dest: pkg.paths.templates + "_inlinejs" })
         ))
-        .pipe($.if(["*.js", "!*.min.js"],
+        /* .pipe($.if(["*.js", "!*.min.js"],
             $.uglify()
-        ))
+        )) */
         .pipe($.if(["*.js", "!*.min.js"],
             $.rename({ suffix: ".min" })
         ))
@@ -165,9 +152,9 @@ gulp.task("js", ["js-inline"], () => {
             $.newer({ dest: pkg.paths.dist.js, ext: ".min.js" }),
             $.newer({ dest: pkg.paths.dist.js })
         ))
-        .pipe($.if(["*.js", "!*.min.js"],
+        /* .pipe($.if(["*.js", "!*.min.js"],
             $.uglify()
-        ))
+        )) */
         .pipe($.if(["*.js", "!*.min.js"],
             $.rename({ suffix: ".min" })
         ))
@@ -254,35 +241,6 @@ gulp.task("download", (callback) => {
     });
 });
 
-// Run pa11y accessibility tests on each template
-function processAccessibility(element, i, callback) {
-    const accessibilitySrc = pkg.urls.local + element.url;
-    const cliReporter = require('./node_modules/pa11y-reporter-cli/lib/reporter.js');
-    const options = {
-        log: cliReporter,
-        ignore:
-            [
-                'notice',
-                'warning'
-            ],
-    };
-    const test = $.pa11y(options);
-
-    $.fancyLog("-> Checking Accessibility for URL: " + $.chalk.cyan(accessibilitySrc));
-    test.run(accessibilitySrc, (error, results) => {
-        cliReporter.results(results, accessibilitySrc);
-        callback();
-    });
-}
-
-// accessibility task
-gulp.task("a11y", (callback) => {
-    doSynchronousLoop(pkg.globs.critical, processAccessibility, () => {
-        // all done
-        callback();
-    });
-});
-
 //favicons-generate task
 gulp.task("favicons-generate", () => {
     $.fancyLog("-> Generating favicons");
@@ -315,6 +273,18 @@ gulp.task("favicons-generate", () => {
     })).pipe(gulp.dest(pkg.paths.favicon.dest));
 });
 
+// Static Server + watching scss/html files
+gulp.task('serve', ['scss'], function() {
+
+    browserSync.init({
+        server: "./"
+    });
+
+    gulp.watch("src/scss/*.scss", ['scss']);
+    gulp.watch("./*.html").on('change', browserSync.reload);
+    gulp.watch("./include/css/*.css").on('change', browserSync.reload);
+});
+
 //copy favicons task
 gulp.task("favicons", ["favicons-generate"], () => {
     $.fancyLog("-> Copying favicon.ico");
@@ -338,17 +308,12 @@ gulp.task("imagemin", () => {
 });
 
 // Default task
-gulp.task("default", ["css", "vendorcss", "js"], () => {
+gulp.task("default", ["css","mqcss", "serve", "vendorcss", "js"], () => {
     $.livereload.listen();
-    gulp.watch([pkg.paths.src.scss + "**/*.scss"], ["css"]);
-    gulp.watch([pkg.paths.src.css + "**/*.css"], ["css"]);
+    gulp.watch([pkg.paths.src.scss + "**/*.scss"], ["css", "mqcss"]);
+    gulp.watch([pkg.paths.src.css + "**/*.css"], ["css", "mqcss"]);
     gulp.watch([pkg.paths.src.js + "**/*.js"], ["js"]);
-    gulp.watch([pkg.paths.templates + "**/*.{html,htm,twig}"], () => {
-        gulp.src(pkg.paths.templates)
-            .pipe($.plumber({ errorHandler: onError }))
-            .pipe($.livereload());
-    });
 });
 
 // Production build
-gulp.task("build", ["default", "imagemin", "a11y"]);
+gulp.task("build", ["default", "imagemin"]);
