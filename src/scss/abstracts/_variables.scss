@@ -1,12 +1,16 @@
 // COLORS
-$color-dark-blue: #171949;
-$color-orange: #EEA54C;
-$color-green: #39A56E;
-$color-light-blue: #74ADCF;
-$color-bright-blue: #36B1E3;
-$color-light-grey: #E9EAEA;
 $color-white: #fff;
-$color-black: #000;
+$color-black: rgb(0, 0, 0);
+$color-dark-blue: rgba(9, 64, 116, 1);
+$color-royal-blue: rgba(60, 105, 151, 1);
+$color-light-blue: rgba(51, 102, 153, 1);
+$color-royal-blue: rgba(47, 72, 88, 1);
+$color-bright-blue: rgba(90, 219, 255, 1);
+$color-yellow: rgba(255, 209, 102, 1);
+$color-orange: rgba(254, 144, 0, 1);
+$color-lime-green: rgba(158, 228, 147, 1);
+$color-light-green: rgba(218, 247, 220, 1);
+$color-light-grey: rgb(178, 175, 187);
 
 // FONT VARIABLES
 $font-headers: 'Nunito', sans-serif;
@@ -14,7 +18,8 @@ $font-primary: 'Roboto', sans-serif;
 $default-font-size: 1.6rem;
 
 // RESPONSIVE BREAKPOINTS
-$bp-largest: 75em;   // 1200px
-$bp-large: 62.5em;   // 1000px
-$bp-medium: 50em;    // 800px;
-$bp-small: 37.5em;    // 600px;
+$screen-largest: 120rem;
+$screen-larger: 110rem;
+$screen-large: 90rem;
+$screen-medium: 80rem;
+$screen-small: 60rem;

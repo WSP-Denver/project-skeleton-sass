@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>WSP Project Skeleton</title>
+  <link rel="stylesheet" media="screen" href="/include/css/vendor.css" type="text/css" />
+  <link rel="stylesheet" media="screen" href="/include/css/main.css" type="text/css" />
+  <link rel="stylesheet" media="screen" href="/include/css/media_queries.css" type="text/css" />
+  <!-- <link rel="stylesheet" media="print" href="/include/css/print.css" type="text/css" /> -->
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,700,800|Roboto|Material+Icons" rel="stylesheet">
+  <script type="text/javascript" src="/include/js/library.min.js"></script>
+</head>
+
+<body id="home">
+
+  <header id="header" role="banner" aria-label="Site Header">
+    <a href="#mainContent" class="skip-nav">Skip to content</a>
+    <div class="logo-wrapper">
+      <a href="/">
+        <img src="/images/img-png-wsp-black.png" alt="" class="logo">
+      </a>
+    </div>
+    <button id="mobileBtn" role="button" aria-expanded="false" type="button" aria-controls="mainNav" class="mobile-button">
+      <span></span>
+      <span></span>
+      <span></span>
+      Menu
+    </button>
+    <div class="search-bar">
+      <form role="search">
+        <label for="desktopQ">Search</label>
+        <input id="desktopQ" type="search" name="q" aria-label="Search this site for content" placeholder="Type here to search">
+        <!-- <img src="/images/search_icon.svg" alt="Search"> -->
+        <svg id="searchIcon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="18px" height="18px" viewBox="0 0 18 18" style="enable-background:new 0 0 18 18;" xml:space="preserve">
+          <path d="M17.4,15.8L14,12.5c0,0,0,0,0,0c1-1.3,1.5-2.8,1.5-4.5c0-4.2-3.4-7.6-7.6-7.6S0.3,3.7,0.3,7.9
+	c0,4.2,3.4,7.6,7.6,7.6c1.7,0,3.3-0.6,4.5-1.5c0,0,0,0,0,0l3.4,3.4c0.2,0.2,0.5,0.3,0.8,0.3c0.3,0,0.6-0.1,0.8-0.3
+	C17.8,16.9,17.8,16.2,17.4,15.8z M7.9,13.3c-3,0-5.4-2.4-5.4-5.4s2.4-5.4,5.4-5.4c3,0,5.4,2.4,5.4,5.4S10.9,13.3,7.9,13.3z"
+          />
+        </svg>
+      </form>
+    </div>
+    <nav class="main-nav">
+      <div id="mainNav" class="dropdown" aria-hidden="true">
+        <ul>
+          <li class="nav-item p1">
+            <a href="/">Home</a>
+          </li>
+          <li class="nav-item p2">
+            <a href="/">About</a>
+          </li>
+          <li class="nav-item p3">
+            <a href="/">Contact</a>
+          </li>
+          <li>
+            <form role="search">
+              <label id="searchTrigger" onclick="" ontouchstart="" for="search">
+                <span>Search</span>
+                <input id="search" type="search" name="q" aria-label="Search this site for content">
+              </label>
+              <img src="/images/search_icon.svg" alt="Search">
+            </form>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- END HEADER -->
+
+  <main id="mainContent" role="main">
+
+    <section aria-label="" class="main-content">
+
+      <h1>H1 Heading Title</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <div class="img-in-copy right clearfix">
+        <img src="https://picsum.photos/750/551/?random" alt="Placeholder text">
+        <figcaption>
+          <span>Fig A:</span>This is the caption for the image above.</figcaption>
+      </div>
+
+      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum
+        dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <h2>Heading Title H2</h2>
+      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor
+        sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+        ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur
+        adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+        in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+        in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <div class="img-in-copy left clearfix">
+        <img src="https://picsum.photos/750/600/?random" alt="Placeholder text">
+        <figcaption>
+          <span>Fig B:</span>This is the caption for the image above.</figcaption>
+      </div>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum
+        dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+        aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor
+        sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+        ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <h3>H3 Heading Title Text</h3>
+      <p>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+        in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+        in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <ul class="basic-list">
+        <li>Executive/Administrative Committee</li>
+        <li>Finance and Audit Committee: Mike Rossi/Tom Richards</li>
+        <li>Nested List</li>
+        <ul>
+          <li>Nested List Item</li>
+          <li>Another Nested List Item</li>
+          <li>One More Nested List Item</li>
+          <li>
+            <a href="#">Linked Nested List Item</a>
+          </li>
+        </ul>
+        </li>
+        <li>Operations Committee</li>
+        <li>Transportation and Land Use Committee</li>
+      </ul>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem
+        ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+        aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      <div class="img-in-copy wide clearfix">
+        <img src="https://picsum.photos/800/500/?random?=v123" alt="Placeholder text">
+        <figcaption>
+          <span>Fig C:</span>This is the caption for the image above.</figcaption>
+      </div>
+      <h4>Heading Title H4</h4>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum
+        dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </section>
+
+    <aside role="complementary">
+      <h2>Aside</h2>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum
+        dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </aside>
+
+  </main>
+
+  <footer id="footer" role="contentinfo">
+    <p>footer</p>
+  </footer>
+
+</body>
+
+</html>

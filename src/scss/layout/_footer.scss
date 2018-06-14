@@ -1,82 +1,11 @@
-.footer {
-    padding: 1rem 0;
-    font-size: 1.4rem;
-    color: $color-white;
-    background-color: $color-green;
 
-    &-social {
-        img {
-            max-width: 3rem;
-        }
-        p {
-            margin: 0rem !important;
-        }
-    }
-    &-social-buttons {
-        list-style: none;
-        display: inline;
-        border: none;
-  
-        li {
-            display: inline;
-            margin: 0 0.4rem;
-        }
-        a {
-            display: inline-block;
-            width: 3rem;
-            height: 3rem;
-            color: transparent !important;
-            font-size: 0;
-        }
-        &-facebook {
-            background: url(/images/social/facebook.svg) no-repeat scroll center top;
-            background-size: contain;
-            &:hover {
-                background: url(/images/social/facebook_hover.svg) no-repeat scroll center top;
-                background-size: contain;
-            }
-        }
-        &-twitter {
-            background: url(/images/social/twitter.svg) no-repeat scroll center top;
-            background-size: contain;
-            &:hover {
-                background: url(/images/social/twitter_hover.svg) no-repeat scroll center top;
-                background-size: contain;
-            }
-        }
-        &-instagram {
-            background: url(/images/social/instagram.svg) no-repeat scroll center top;
-            background-size: contain;
-            &:hover {
-                background: url(/images/social/instagram_hover.svg) no-repeat scroll center top;
-                background-size: contain;
-            }
-        }
-    }
-    &-wrapper {
-        padding: 2rem;
-        @media only screen and (min-width: $bp-medium) {
-            max-width: 100rem;
-            margin: 0 auto;
-        }
-    }
-    &-link {
-        &:link,
-        &:visited {
-            text-decoration: none;
-            display: inline-block;
-            color: $color-white;
-            font-size: 1.5rem;
-            font-weight: bold;
-            line-height: 3.25;
-            @media only screen and (min-width: $bp-medium) {
-                margin: 0 2rem;
-            }
-        }
-        &:hover,
-        &:active {
-            color: $color-dark-blue;
-        }
-    }
+/*=============================================
+=            Footer Styles            =
+=============================================*/
+#footer {
+    background-color: $color-lime-green;
+    color: $color-light-green;
+    display: flex;
+    justify-content: space-evenly;
 }
-
+/*=====  End of Footer Styles  ======*/

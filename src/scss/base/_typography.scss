@@ -1,17 +1,22 @@
+
+/*=============================================
+=            Typography Styles            =
+=============================================*/
 body {
 		font-family: $font-primary;
 		line-height: 2.5rem;
 		font-size: $default-font-size;
-    color: $color-black;
+    color: $color-royal-blue;
 }
 %heading {
 	font-family: $font-headers;
+	margin: 2rem 0rem;
 }
 h1 {
 	@extend %heading;
 	font-weight: 700;
 	font-size: 4rem;
-	margin: 10rem 0 5rem 0;
+	line-height: 4rem;
 	color: $color-black;
 }
 h2 {
@@ -19,7 +24,6 @@ h2 {
 	font-weight: 800;
 	font-size: 4rem;
 	line-height: 4rem;
-	margin: 2rem 0 3rem 0;
 	color: $color-bright-blue;
 }
 h3 {
@@ -27,33 +31,22 @@ h3 {
 	font-weight: 800;
 	font-size: 2.5rem;
 	line-height: 2.5rem;
-	margin: 2rem 0 3rem 0;
 	color: $color-bright-blue;
 }
 h4 {
 	@extend %heading;
 	font-weight: 700;
 	font-size: 2.5rem;
-	text-transform: uppercase;
-	color: $color-green;
+	color: $color-yellow;
 }
 h5, h6 {
 	font-size: 1.2rem;
-}
-p {
-	margin-bottom: 2.6rem;
-}
-ul {
-	margin-bottom: 2rem;
-}
-li {
-	margin:0rem 0rem 1.5rem 0;
 }
 dt {
 	@extend %heading;
 	font-weight: 700;
 	font-size: 2.5rem;
-	color: $color-green;
+	color: $color-yellow;
 	margin: 2rem 0rem 1rem 0rem;
 }
 dd {
@@ -64,24 +57,21 @@ a {
 }
 a:link {
 	text-decoration: none;
-	color: #2e97ac;
+	color: $color-bright-blue;
 }
+
+a:visited {
+	text-decoration: underline;
+	color: $color-bright-blue;
+}
+
 a:hover {
 	text-decoration: underline;
-	color: #2e97ac;
+	color: $color-light-blue;
 }
-.all-caps {
-	text-transform: uppercase;
+
+a:active {
+	text-decoration: none;
+	color: $color-light-blue;
 }
-.cape-orange-text {
-	color: $color-orange !important;
-}
-.cape-dark-blue-text {
-	color: $color-dark-blue !important;
-}
-.cape-white-text {
-	color: $color-white !important;
-}
-.cape-bright-blue-text {
-	color: $color-bright-blue !important;
-}
+/*=====  End of Typography Styles  ======*/

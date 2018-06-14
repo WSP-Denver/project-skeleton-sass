@@ -1,3 +1,7 @@
+/*=============================================
+=            Base Styles            =
+=============================================*/
+
 *,
 *::after,
 *::before {
@@ -9,17 +13,12 @@
 html {
     box-sizing: border-box;
     font-size: 62.5%; // 10px/16px = 62.5% -> 1rem = 10px
-
-    @media only screen and (max-width: $bp-largest) {
-        font-size: 50%;
-    }
 }
 
 body {
     box-sizing: border-box;
     min-height: 100vh;
-	margin: 0 auto;
-    background-color: $color-white;
+    margin: 0 auto; //background-color: $color-light-green;
 }
 
 img {
@@ -27,3 +26,111 @@ img {
     height: auto;
     max-width: 100%;
 }
+
+figcaption {
+    padding: 0.8rem;
+    font-size: 1.2rem;
+    font-style: italic;
+    background: #eaeaea;
+}
+
+figcaption span {
+    display: block;
+    font-weight: 600;
+}
+
+.basic-list {
+    margin: 0 0 16px 32px;
+    padding: 0;
+    list-style-type: none;
+    & li {
+        position: relative;
+        padding: 0 0 4px 0;
+    }
+    & li:before {
+        content: "";
+        position: absolute;
+        left: -20px;
+        top: 6px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #cacaca;
+    }
+    & ul {
+        margin: 0 0 8px 32px;
+        & li:before {
+            content: "";
+            position: absolute;
+            left: -20px;
+            top: 6px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: transparent;
+            border: 2px solid #cacaca;
+        }
+    }
+}
+
+.breadcrumb {
+    display: none;
+}
+
+.intro {
+    color: #7c90b5;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.img-in-copy {
+    position: relative;
+    margin: 0 0 16px 0;
+    & img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+    &.right {
+        margin: 8px 0 16px 24px;
+        float: right;
+    }
+    &.left {
+        margin: 8px 24px 16px 0;
+        float: left;
+    }
+}
+.img-in-copy:not(.wide) {
+    max-width: 240px;
+}
+.img-wrapper {
+    position: relative;
+    & img {
+        display: block;
+        width: 100%;
+    }
+}
+
+.clearfix {
+    zoom: 1;
+    &:before,
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+a.skip-nav {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    color: transparent;
+    z-index: -1;
+}
+
+/*=====  End of Base Styles  ======*/

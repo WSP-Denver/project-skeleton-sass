@@ -5,29 +5,68 @@
 
 $(document).ready(function () {
 
-  // Code for Accordion. Listens for click and changes CSS display from none to block //
-  var acc = document.getElementsByClassName("content-accordion");
-  var i;
-
-  for (i = 0; i < acc.length; i++) {
-    acc[i].addEventListener("click", function () {
-      this.classList.toggle("active");
-      var panel = this.nextElementSibling;
-      if (panel.style.display === "block") {
-        panel.style.display = "none";
+  function stickyHeader() {
+    $(window).bind('scroll', function() {
+      var mainContent = $('#mainContent'),
+          header = $('header');
+          headerH = header.height();
+      if ( $(window).scrollTop() > 0 ) {
+        header.addClass('stick');
+        mainContent.css('paddingTop', headerH);
       } else {
-        panel.style.display = "block";
+        header.removeClass('stick');
+        mainContent.attr('style', "");
       }
     });
-  };
+  }
 
-  var list = document.querySelector('section');
-  list.addEventListener('click', function (ev) {
-    if (ev.target.tagName === 'BUTTON') {
-      ev.target.classList.toggle('content-accordion-down');
+  function checkViewWidth() {
+    var mainWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);//Compares width among 3 arguments and determines mobile or desktop
+    if (mainWidth >= 900 ) {
+      //Tablet & Desktop
+      stickyHeader();
+    } else {
+      return
     }
-  }, false);
+  }
+  
+  checkViewWidth();
 
+  function focusInput() {
+    var searchBtn = $('#searchTrigger'), searchInput = $('#search');
+    $(searchBtn).on('touchstart', function(event) {
+      searchInput.focus();
+    })
+  }
+
+  focusInput();
+
+  var mobBtn = $('#mobBtn'), menu = $('#mainNav');
+
+  function mobileMenuFunx() {
+    mobBtn.on('click', function(event) {
+      if ( menu.hasClass('expand') ) {
+        $(this).removeClass('spin');
+        menu.removeClass('expand').slideUp('fast');
+      } else {
+        $(this).addClass('spin');
+        menu.addClass('expand').slideDown('fast');
+      }
+    });
+  }
+
+  mobileMenuFunx();
+
+  $('.option-box').each(function() {
+    $(this).on('click', function(event) {
+      if ( $(this).hasClass('selected') ) {
+        return
+      } else {
+        $('button').removeClass('selected');
+        $(this).addClass('selected');
+      }
+    })
+  })
 
 });
 
