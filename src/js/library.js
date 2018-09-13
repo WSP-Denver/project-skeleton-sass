@@ -68,6 +68,55 @@ $(document).ready(function () {
     })
   })
 
+    /*
+      Handle Dropdown navigation utilizing roles and aria attributes
+    */
+    buildDropdownNavigation = function() {
+      function showSubmenu(dropdown) {
+          clearMenus();
+          // Find element within the dropdown with aria-hidden attribute
+          var subMenu = dropdown.target.parentNode.querySelectorAll('[aria-hidden]');
+          // If it exists, change the attribute to false to show the menu
+          if(subMenu.length) subMenu[0].setAttribute('aria-hidden', 'false');
+      };
+
+      function hideSubmenu(dropdown) {
+          // To handle events from child and parents, we're verifying dropdown has the aria-haspopup attribute. If it doesn't, select the parent
+          var menu = !dropdown.target.hasAttribute('aria-haspopup') ? dropdown.target : dropdown.target.parentNode;
+
+          // Find element within the dropdown with aria-hidden attribute
+          // returns NodeList
+          var subMenu = menu.querySelectorAll('[aria-hidden]');
+          // If it exists, change the attribute to true to hide the menu
+          if(subMenu.length) subMenu[0].setAttribute('aria-hidden', 'true');
+      };
+
+      // Close all other dropdowns when a new top level link is active
+      function clearMenus(item) {
+          var dropdowns = document.querySelectorAll('[role=navigation] [aria-hidden]');
+          for(i=0; i< dropdowns.length; i++) {
+              dropdowns[i].setAttribute('aria-hidden', 'true');
+          }
+      };
+
+      var navDropdown = document.querySelectorAll('[role=navigation] [aria-haspopup]');
+      for (i = 0; i < navDropdown.length; i++) {
+          navDropdown[i].addEventListener('mouseover', showSubmenu);
+          navDropdown[i].addEventListener('focus', showSubmenu);
+          navDropdown[i].parentNode.addEventListener('mouseleave', hideSubmenu);
+      };
+
+      var navItems = document.querySelectorAll('[role=navigation] > ul > li > a:not([aria-haspopup])');
+      for (i=0; i< navItems.length; i++) {
+          navItems[i].addEventListener('mouseover', clearMenus);
+          navItems[i].addEventListener('focus', clearMenus);
+      }
+
+      // Close menus on click
+      this.addEventListener('click', clearMenus);
+  }
+  buildDropdownNavigation();
+
 });
 
 
