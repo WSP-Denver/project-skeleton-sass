@@ -151,6 +151,49 @@ $(document).ready(function () {
     return true;
   }
   updateNavigationAria();
+
+
+  /*
+    Listens to clicks of the navigationToggle button and toggles the aria-expanded attribute
+
+    Usage:
+      <button id="navigationToggle" aria-controls="%navId%" /> %navId% could be mainNav, subNav, etc
+
+      <div id="%navId%">...
+    
+    Result:
+      <button id="navigationToggle" aria-controls="%navId%" class="spin" />
+      <div id="%navId%" aria-expanded="true">...
+
+    CSS: 
+      div[aria-expanded] {
+        display: block;
+      }
+  */
+  navigationToggle = function () {
+    function toggle(e) {
+      var toggle = e.currentTarget,
+          targetId = toggle.getAttribute('aria-controls'),
+          targetElem = document.querySelector('#'+targetId);
+
+      if(!targetElem) return false;
+
+      if (targetElem.getAttribute('aria-expanded')) {
+          toggle.classList.remove('spin');
+          targetElem.removeAttribute('aria-expanded');
+      } else {
+          toggle.classList.add('spin');
+          targetElem.setAttribute('aria-expanded','true');
+      }
+      return true;
+    };
+
+    var navigationToggle = document.querySelector('#navigationToggle');
+    navigationToggle.addEventListener('click', toggle);
+  }
+
+  navigationToggle();
+
 });
 
 
