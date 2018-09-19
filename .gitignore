@@ -1,5 +1,10 @@
 # Node folder
 /node_modules
 
+# Ignore build folders
+/include/css
+/include/js
+/images
+
 # Visual Studio Code files
 *.code-workspace
