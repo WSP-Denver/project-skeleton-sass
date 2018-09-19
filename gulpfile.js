@@ -44,7 +44,7 @@ gulp.task("scss", () => {
         .pipe($.pxtorem())
         .pipe($.sourcemaps.write("./"))
         .pipe($.size({ gzip: true, showFiles: true }))
-        .pipe(gulp.dest(pkg.paths.build.css))
+        .pipe(gulp.dest(pkg.paths.dist.css))
         .pipe(browserSync.stream());
 });
 
@@ -63,7 +63,7 @@ gulp.task("mqscss", () => {
         .pipe($.pxtorem())
         .pipe($.sourcemaps.write("./"))
         .pipe($.size({ gzip: true, showFiles: true }))
-        .pipe(gulp.dest(pkg.paths.build.css))
+        .pipe(gulp.dest(pkg.paths.dist.css))
         .pipe(browserSync.stream());
 });
 
@@ -80,9 +80,9 @@ gulp.task("css", ["scss"], () => {
         .pipe($.size({ gzip: true, showFiles: true }))
         .pipe(gulp.dest(pkg.paths.dist.css))
         .pipe($.filter("**/*.css"))
-        .pipe($.livereload());
+        //.pipe($.livereload());
 });
-// css task - add main.css distribution CSS into the public css folder, and add our banner to it
+// css task - add media_queries.css distribution CSS into the public css folder, and add our banner to it
 gulp.task("mqcss", ["mqscss"], () => {
     $.fancyLog("-> Building Media Query css");
     return gulp.src(pkg.globs.distCss)
@@ -95,7 +95,7 @@ gulp.task("mqcss", ["mqscss"], () => {
         .pipe($.size({ gzip: true, showFiles: true }))
         .pipe(gulp.dest(pkg.paths.dist.css))
         .pipe($.filter("**/*.css"))
-        .pipe($.livereload());
+        //.pipe($.livereload());
 });
 
 // css task - combine & minimize any vendor CSS into the public css folder, and add our banner to it
@@ -119,7 +119,7 @@ gulp.task("vendorcss", () => {
         .pipe($.size({ gzip: true, showFiles: true }))
         .pipe(gulp.dest(pkg.paths.dist.css))
         .pipe($.filter("**/*.css"))
-        .pipe($.livereload());
+        //.pipe($.livereload());
 });
 
 // inline js task - minimize the inline Javascript into _inlinejs in the templates path
@@ -140,7 +140,7 @@ gulp.task("js-inline", () => {
         .pipe($.size({ gzip: true, showFiles: true }))
         .pipe(gulp.dest(pkg.paths.templates + "_inlinejs"))
         .pipe($.filter("**/*.js"))
-        .pipe($.livereload());
+        //.pipe($.livereload());
 });
 
 // js task - minimize any distribution Javascript into the public js folder, and add our banner to it
@@ -162,115 +162,7 @@ gulp.task("js", ["js-inline"], () => {
         .pipe($.size({ gzip: true, showFiles: true }))
         .pipe(gulp.dest(pkg.paths.dist.js))
         .pipe($.filter("**/*.js"))
-        .pipe($.livereload());
-});
-
-// Process data in an array synchronously, moving onto the n+1 item only after the nth item callback
-function doSynchronousLoop(data, processData, done) {
-    if (data.length > 0) {
-        const loop = (data, i, processData, done) => {
-            processData(data[i], i, () => {
-                if (++i < data.length) {
-                    loop(data, i, processData, done);
-                } else {
-                    done();
-                }
-            });
-        };
-        loop(data, 0, processData, done);
-    } else {
-        done();
-    }
-}
-
-// Process the critical path CSS one at a time
-function processCriticalCSS(element, i, callback) {
-    const criticalSrc = pkg.urls.critical + element.url;
-    const criticalDest = pkg.paths.templates + element.template + "_critical.min.css";
-
-    let criticalWidth = 1200;
-    let criticalHeight = 1200;
-    if (element.template.indexOf("amp_") !== -1) {
-        criticalWidth = 600;
-        criticalHeight = 19200;
-    }
-    $.fancyLog("-> Generating critical CSS: " + $.chalk.cyan(criticalSrc) + " -> " + $.chalk.magenta(criticalDest));
-    $.critical.generate({
-        src: criticalSrc,
-        dest: criticalDest,
-        inline: false,
-        ignore: [],
-        css: [
-            pkg.paths.dist.css + pkg.vars.siteCssName,
-        ],
-        minify: true,
-        width: criticalWidth,
-        height: criticalHeight
-    }, (err, output) => {
-        if (err) {
-            $.fancyLog($.chalk.magenta(err));
-        }
-        callback();
-    });
-}
-
-//critical css task
-gulp.task("criticalcss", ["css"], (callback) => {
-    doSynchronousLoop(pkg.globs.critical, processCriticalCSS, () => {
-        // all done
-        callback();
-    });
-});
-
-// Process the downloads one at a time
-function processDownload(element, i, callback) {
-    const downloadSrc = element.url;
-    const downloadDest = element.dest;
-
-    $.fancyLog("-> Downloading URL: " + $.chalk.cyan(downloadSrc) + " -> " + $.chalk.magenta(downloadDest));
-    $.download(downloadSrc)
-        .pipe(gulp.dest(downloadDest));
-    callback();
-}
-
-// download task
-gulp.task("download", (callback) => {
-    doSynchronousLoop(pkg.globs.download, processDownload, () => {
-        // all done
-        callback();
-    });
-});
-
-//favicons-generate task
-gulp.task("favicons-generate", () => {
-    $.fancyLog("-> Generating favicons");
-    return gulp.src(pkg.paths.favicon.src).pipe($.favicons({
-        appName: pkg.name,
-        appDescription: pkg.description,
-        developerName: pkg.author,
-        background: "#FFFFFF",
-        path: pkg.paths.favicon.path,
-        url: pkg.site_url,
-        display: "standalone",
-        orientation: "portrait",
-        version: pkg.version,
-        logging: false,
-        online: false,
-        html: pkg.paths.build.html + "favicons.html",
-        replace: true,
-        icons: {
-            android: false, // Create Android homescreen icon. `boolean`
-            appleIcon: true, // Create Apple touch icons. `boolean`
-            appleStartup: false, // Create Apple startup images. `boolean`
-            coast: true, // Create Opera Coast icon. `boolean`
-            favicons: true, // Create regular favicons. `boolean`
-            firefox: true, // Create Firefox OS icons. `boolean`
-            opengraph: false, // Create Facebook OpenGraph image. `boolean`
-            twitter: false, // Create Twitter Summary Card image. `boolean`
-            windows: true, // Create Windows 8 tile icons. `boolean`
-            yandex: true // Create Yandex browser icon. `boolean`
-        }
-    })).pipe(gulp.dest(pkg.paths.favicon.dest));
+        //.pipe($.livereload());
 });
 
 // Static Server + watching scss/html files
@@ -308,8 +200,7 @@ gulp.task("imagemin", () => {
 });
 
 // Default task
-gulp.task("default", ["css","mqcss", "serve", "vendorcss", "js"], () => {
-    $.livereload.listen();
+gulp.task("default", ["css","mqcss", "vendorcss", "js"], () => {
     gulp.watch([pkg.paths.src.scss + "**/*.scss"], ["css", "mqcss"]);
     gulp.watch([pkg.paths.src.css + "**/*.css"], ["css", "mqcss"]);
     gulp.watch([pkg.paths.src.js + "**/*.js"], ["js"]);

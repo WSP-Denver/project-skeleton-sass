@@ -31,16 +31,10 @@
             "js": "./build/iclude/js/",
             "html": "./build/",
             "img": "./build/images/"
-        },
-        "favicon": {
-            "src": "./src/images/favicon_src.png",
-            "path": "/build/images/site/"
-        },
-        "scss": [],
-        "templates": "./src/templates/"
+        }
     },
     "urls": {
-        "live": "http:///",
+        "live": "http://",
         "local": "http://localhost/",
         "critical": "http://localhost/"
     },
@@ -49,12 +43,10 @@
         "siteMqCssName": "media_queries.css",
         "vendorCssName": "vendor.css",
         "scssName": "main.scss",
-        "mqscssName": "media_queries.scss",
-        "cssName": "main.css"
+        "mqscssName": "media_queries.scss"
     },
     "globs": {
         "distCss": [
-            "./build/include/css/*.css",
             "./src/include/css/*.css"
         ],
         "vendorCss": [
@@ -84,7 +76,6 @@
         "babel-core": "^6.26.0",
         "browser-sync": "^2.23.6",
         "chalk": "^1.1.3",
-        "css-mqpacker": "^6.0.2",
         "fancy-log": "^1.3.2",
         "gulp": "^3.9.1",
         "gulp-autoprefixer": "^4.1.0",
@@ -92,12 +83,10 @@
         "gulp-cached": "^1.1.1",
         "gulp-concat": "^2.6.1",
         "gulp-cssnano": "^2.1.2",
-        "gulp-favicons": "^2.2.6",
         "gulp-filter": "^5.1.0",
         "gulp-header": "^1.8.9",
         "gulp-if": "^2.0.2",
         "gulp-imagemin": "^3.1.1",
-        "gulp-livereload": "^3.8.1",
         "gulp-load-plugins": "^1.5.0",
         "gulp-newer": "^1.4.0",
         "gulp-plumber": "^1.2.0",
@@ -116,18 +105,16 @@
         "sassdoc": "^2.5.0"
     },
     "dependencies": {
-        "babel-plugin-transform-runtime": "^6.23.0",
-        "babel-preset-es2015": "^6.24.1",
-        "gulp-git": "^2.7.0",
         "normalize.css": "^5.0.0"
     },
     "scripts": {
         "start": "gulp",
-        "build": "gulp build"
+        "build": "gulp build",
+        "serve": "gulp serve"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/WSP-Denver/project-skeleton"
+        "url": "https://github.com/WSP-Denver/project-skeleton-sass"
     },
     "bugs": {
         "email": "benjamin.rudolph@wsp.com"
