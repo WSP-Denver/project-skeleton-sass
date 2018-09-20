@@ -10,7 +10,6 @@
   <link rel="stylesheet" media="screen" href="/include/css/main.css" type="text/css" />
   <link rel="stylesheet" media="screen" href="/include/css/media_queries.css" type="text/css" />
   <link href="https://fonts.googleapis.com/css?family=Nunito:400,700,800|Roboto|Material+Icons" rel="stylesheet">
-  <script type="text/javascript" src="/include/js/library.min.js"></script>
 </head>
 
 <body id="home">
@@ -40,6 +39,17 @@
         <figcaption>
           <span>Fig A:</span>This is the caption for the image above.</figcaption>
       </figure>
+
+      <button id="openModal" class="button open-modal" role="button" aria-controls="modalBox">Learn more</button>
+
+      <div id="modalCover" aria-hidden="true"></div>
+
+      <div id="modalBox" aria-hidden="true">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus nisi tenetur, voluptates iusto hic
+          voluptate consequatur illo, at animi debitis recusandae dolorum ratione corrupti consectetur suscipit cum.
+          Sint, non obcaecati!</p>
+        <button id="closeModal" class="button close-modal" role="button" aria-controls="modalBox">Close</button>
+      </div>
 
       <h2>Heading Title H2</h2>
       <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
@@ -131,7 +141,7 @@
   </main>
 
   <!--#include virtual="~/include/footer.aspx" -->
-
+  
 </body>
 
 </html>

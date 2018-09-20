@@ -21,5 +21,6 @@
   </p>
 </footer>
 <!--#include virtual="~/include/google-analytics.aspx" -->
-
+<script type="text/javascript" src="/include/js/vendor.min.js"></script>
+<script type="text/javascript" src="/include/js/library.min.js"></script>
 <!-- END FOOTER -->
