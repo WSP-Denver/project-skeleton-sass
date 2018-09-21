@@ -25,29 +25,6 @@ C17.8,16.9,17.8,16.2,17.4,15.8z M7.9,13.3c-3,0-5.4-2.4-5.4-5.4s2.4-5.4,5.4-5.4c3
       </svg>
     </form>
   </div>
-  <nav class="main-nav">
-    <div id="mainNav" class="dropdown" aria-hidden="true">
-      <ul>
-        <li class="nav-item p1">
-          <a href="/">Home</a>
-        </li>
-        <li class="nav-item p2">
-          <a href="/">About</a>
-        </li>
-        <li class="nav-item p3">
-          <a href="/">Contact</a>
-        </li>
-        <li>
-          <form role="search">
-            <label id="searchTrigger" onclick="" ontouchstart="" for="search">
-              <span>Search</span>
-              <input id="search" type="search" name="q" aria-label="Search this site for content">
-            </label>
-            <img src="/images/search_icon.svg" alt="Search">
-          </form>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  <!--#include virtual="~/include/site_navigation.aspx" -->
 </header>
 <!-- END HEADER -->
