@@ -43,7 +43,9 @@
         "siteMqCssName": "media_queries.css",
         "vendorCssName": "vendor.css",
         "scssName": "main.scss",
-        "mqscssName": "media_queries.scss"
+        "mqscssName": "media_queries.scss",
+        "siteJsName": "library.min.js",
+        "vendorJsName": "vendor.min.js"
     },
     "globs": {
         "distCss": [
@@ -52,24 +54,22 @@
         "vendorCss": [
             "./node_modules/normalize.css/normalize.css"
         ],
+        "vendorJs": [
+            "./node_modules/jquery/dist/jquery.min.js"
+        ],
         "img": [
             "./images/"
         ],
         "distJs": [
-            "./src/js/*.js"
+            "./src/js/navigation.js",
+            "./src/js/navigation.dropdown.js",
+            "./src/js/modal.js"
         ],
         "babelJs": [
             "./src/js/*.js"
         ],
-        "inlineJs": [
-            "./node_modules/fontfaceobserver/fontfaceobserver.js",
-            "./node_modules/loadjs/dist/loadjs.min.js"
-        ],
-        "critical": [
-            {
-                "url": "http://localhost"
-            }
-        ],
+        "inlineJs": [],
+        "critical": [],
         "siteIcon": "./images/site/favicon.*"
     },
     "devDependencies": {
@@ -84,10 +84,12 @@
         "gulp-concat": "^2.6.1",
         "gulp-cssnano": "^2.1.2",
         "gulp-filter": "^5.1.0",
-        "gulp-header": "^1.8.9",
+        "gulp-header": "^1.8.12",
+        "gulp-footer": "^2.0.1",
         "gulp-if": "^2.0.2",
         "gulp-imagemin": "^3.1.1",
         "gulp-load-plugins": "^1.5.0",
+        "gulp-minify": "^3.1.0",
         "gulp-newer": "^1.4.0",
         "gulp-plumber": "^1.2.0",
         "gulp-postcss": "^7.0.1",
@@ -105,6 +107,7 @@
         "sassdoc": "^2.5.0"
     },
     "dependencies": {
+        "jquery": "^3.3.1",
         "normalize.css": "^5.0.0"
     },
     "scripts": {

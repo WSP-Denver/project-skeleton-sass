@@ -122,43 +122,38 @@ gulp.task("vendorcss", () => {
         //.pipe($.livereload());
 });
 
-// inline js task - minimize the inline Javascript into _inlinejs in the templates path
-gulp.task("js-inline", () => {
-    $.fancyLog("-> Copying inline js");
-    return gulp.src(pkg.globs.inlineJs)
+// vendor js task - grab any vendor js we have defined in our package file
+gulp.task("vendorjs", () => {
+    $.fancyLog("-> Building Vendor JS");
+    return gulp.src(pkg.globs.vendorJs)
         .pipe($.plumber({ errorHandler: onError }))
-        .pipe($.if(["*.js", "!*.min.js"],
-            $.newer({ dest: pkg.paths.templates + "_inlinejs", ext: ".min.js" }),
-            $.newer({ dest: pkg.paths.templates + "_inlinejs" })
-        ))
-        /* .pipe($.if(["*.js", "!*.min.js"],
-            $.uglify()
-        )) */
-        .pipe($.if(["*.js", "!*.min.js"],
-            $.rename({ suffix: ".min" })
-        ))
+        .pipe($.newer({ dest: pkg.paths.dist.js }))
+        .pipe($.print())
+        .pipe($.sourcemaps.init({ loadMaps: true }))
+        .pipe($.concat(pkg.vars.vendorJsName))
+        .pipe($.header(banner, { pkg: pkg }))
+        .pipe($.sourcemaps.write("./"))
         .pipe($.size({ gzip: true, showFiles: true }))
-        .pipe(gulp.dest(pkg.paths.templates + "_inlinejs"))
+        .pipe(gulp.dest(pkg.paths.dist.js))
         .pipe($.filter("**/*.js"))
         //.pipe($.livereload());
 });
 
 // js task - minimize any distribution Javascript into the public js folder, and add our banner to it
-gulp.task("js", ["js-inline"], () => {
+gulp.task("js", ["vendorjs"], () => {
     $.fancyLog("-> Building js");
     return gulp.src(pkg.globs.distJs)
         .pipe($.plumber({ errorHandler: onError }))
-        .pipe($.if(["*.js", "!*.min.js"],
-            $.newer({ dest: pkg.paths.dist.js, ext: ".min.js" }),
-            $.newer({ dest: pkg.paths.dist.js })
-        ))
-        /* .pipe($.if(["*.js", "!*.min.js"],
-            $.uglify()
-        )) */
-        .pipe($.if(["*.js", "!*.min.js"],
-            $.rename({ suffix: ".min" })
-        ))
+        .pipe($.newer({ dest: pkg.paths.dist.js }))
+        .pipe($.sourcemaps.init({ loadMaps: true }))
+        .pipe($.concat(pkg.vars.siteJsName))
+        .pipe($.minify({ ext:{min:'.js'},
+            noSource: true
+         }))
+        .pipe($.header('$(document).ready(function () {')) // e.g. jshinting ^^^
+        .pipe($.footer('});')) 
         .pipe($.header(banner, { pkg: pkg }))
+        .pipe($.sourcemaps.write("./"))
         .pipe($.size({ gzip: true, showFiles: true }))
         .pipe(gulp.dest(pkg.paths.dist.js))
         .pipe($.filter("**/*.js"))
